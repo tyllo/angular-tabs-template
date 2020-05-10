@@ -8,11 +8,11 @@
 <br>
 
 <tabs>
-  <tab *ngFor="let tab of tabs">
+  <tab *ngFor="let tab of tabs" #ref>
     <tab-title>
       Tab <b>{{ tab }}</b> title
     </tab-title>
-    <tab-content>
+    <tab-content *ngIf="ref.active">
       Tab <b>{{ tab }}</b> content
       <test [tab]="tab"></test>
     </tab-content>
