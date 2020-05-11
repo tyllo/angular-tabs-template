@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
-import { TabsService } from './tabs.service';
+import { TabsService } from '../providers/tabs.service';
 
 import { TabComponent } from './tab.component';
 

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
-import { TabsModule } from './tabs/tabs.module';
+import { TabsModule } from './modules/tabs/tabs.module';
 
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';

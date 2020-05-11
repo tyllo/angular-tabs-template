@@ -6,7 +6,7 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 
-import { TabsService } from './tabs.service';
+import { TabsService } from '../providers/tabs.service';
 
 import { TabContentComponent } from './tab-content.component';
 import { TabTitleComponent } from './tab-title.component';
