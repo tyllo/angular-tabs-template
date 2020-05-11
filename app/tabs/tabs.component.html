@@ -1,13 +1,15 @@
-<div class="tabs__titles">
-  <label
-    *ngFor="let tab of tabsService?.tabs$ | async; trackBy: trackByFn"
-    [class.tabs__title--active]="tab === (tabsService.active$ | async)"
-    (click)="tabsService.setActive(tab)"
-  >
-    <ng-container [ngTemplateOutlet]="tab.titleTemplate"></ng-container>
-  </label>
-</div>
+<ng-container *ngIf="tabsService.active$ | async as active">
+  <div class="tabs__titles">
+    <label
+      *ngFor="let tab of tabsService?.tabs$ | async; trackBy: trackByFn"
+      [class.tabs__title--active]="tab === active"
+      (click)="tabsService.setActive(tab)"
+    >
+      <ng-container [ngTemplateOutlet]="tab.titleTemplate"></ng-container>
+    </label>
+  </div>
 
-<div class="tabs__content">
-  <ng-container [ngTemplateOutlet]="(tabsService.active$ | async)?.contentTemplate"></ng-container>
-</div>
+  <div class="tabs__content">
+    <ng-container [ngTemplateOutlet]="active?.contentTemplate"></ng-container>
+  </div>
+</ng-container>
