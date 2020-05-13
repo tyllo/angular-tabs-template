@@ -21,10 +21,10 @@ let id = 0;
 export class TabComponent implements OnDestroy {
   readonly id = id++;
 
-  @ViewChild('title', { static: true })
+  @ViewChild('title', { static: false })
   readonly titleTemplate: TemplateRef<TabTitleComponent>;
 
-  @ViewChild('content', { static: true })
+  @ViewChild('content', { static: false })
   readonly contentTemplate: TemplateRef<TabContentComponent>;
 
   get active(): boolean {
