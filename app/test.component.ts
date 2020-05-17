@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ChangeDetectionStrategy, NgZone, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'test',
@@ -7,6 +7,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
       TestComponent {{ this.tab }} content; timer: {{ timer }}
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestComponent implements OnInit, OnDestroy {
   private intervalId;
@@ -15,8 +16,19 @@ export class TestComponent implements OnInit, OnDestroy {
 
   @Input() tab: number;
 
+  constructor(
+    private zone: NgZone,
+    private changeDetectorRef: ChangeDetectorRef,
+  ) {
+    this.zone.runOutsideAngular(() => {
+      this.intervalId = setInterval(() => {
+        this.timer++;
+        changeDetectorRef.detectChanges();
+      }, 1000);
+    });
+  }
+
   public ngOnInit() {
-    this.intervalId = setInterval(() => this.timer++, 1000);
     console.log(`>>> TestComponent ${this.tab} initialized`);
   }
 
